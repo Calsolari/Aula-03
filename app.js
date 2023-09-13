@@ -1,33 +1,54 @@
-'use strict';
+'use strict'
 
-const botaoSomar = document.getElementById('somar');
-const botaoIdentificar = document.getElementById('identificar');
+const button = document.getElementById('somar')
+const buttonIdent = document.getElementById('ident')
+const botaoMedia = document.getElementById('media')
+const botaoSomar3 = document.getElementById('somar3')
+const botaoVerificar = document.getElementById('verificar')
 
-function somar() {
-    const numero1 = parseInt(document.getElementById('numero1').value);
-    const numero2 = parseInt(document.getElementById('numero2').value);
-    const resultado = document.getElementById('resultado');
+function somar () {
+    const numeroUm = Number(document.getElementById('n1').value)
+    const numeroDois = Number(document.getElementById('n2').value)
+    const resultado1 = document.getElementById('resultado1')
+    const soma = numeroUm + numeroDois
 
-    const total = numero1 + numero2;
+    resultado1.textContent = soma
+}button.addEventListener('click', somar)
 
-    resultado.textContent = total;
-}
+function identificar () {
+    const numeroItem2 = Number(document.getElementById('numberit2').value)
+    const positivoOuNegativo = document.getElementById('identPosNeg')
 
-function identificar() {
-    const numero = Number(document.getElementById("numero-item2").value);
-    const resultado = document.getElementById("resultado-item2");
-    let msg = ''; // Declare a variável msg aqui e atribua um valor vazio
+    if (numeroItem2 > 0 ){
+        positivoOuNegativo.textContent = 'Positivo'
+    }else if(numeroItem2 < 0){
+        positivoOuNegativo.textContent = 'Negativo'
+    }else {
+        positivoOuNegativo.textContent = 'Zero'
+    }   
+}buttonIdent.addEventListener('click', identificar)
 
-    if (numero > 0) {
-        msg = 'positivo'; 
-    } else if (numero < 0) {
-        msg = 'negativo'; 
+function Media () {
+
+    const nota1 = Number(document.getElementById('nota-1').value)
+    const nota2 = Number(document.getElementById('nota-2').value)
+    const nota3 = Number(document.getElementById('nota-3').value)
+    const nota4 = Number(document.getElementById('nota-4').value)
+
+    const media = (nota1 + nota2 + nota3 + nota4) / 4
+
+    if (media >= 7){
+
+        alert(`Sua média é ${media}.Você foi aprovado!`)
+
     } else {
-        msg = 'zero'; 
+        let notaExame = prompt(`Sua média é ${media}. Insira sua nota de exame`)
+        const media2 = (media + Number(notaExame)) / 2
+        
+        if (media2 >= 5){
+            alert(`Sua nova média é ${media2}. Aprovado em exame`)
+        }else{
+            alert(`Sua nova média é ${media2}. Você foi reprovado`)
+        }
     }
-
-    resultado.textContent = msg;
-}
-
-botaoSomar.addEventListener('click', somar);
-botaoIdentificar.addEventListener('click', identificar);
+}botaoMedia.addEventListener('click', Media)
